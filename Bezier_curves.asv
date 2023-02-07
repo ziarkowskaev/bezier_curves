@@ -1,0 +1,68 @@
+clear all;
+
+numPoints = 12;
+t = 0:0.01:1;
+
+
+%Use 4th order Bezier Curve from points B (through L) to C, from H (through A) to I.
+
+%B through L to C
+
+fx1 = [1; 3; 6; 11; 9];
+fy1 = [8; 4; 16; 8; 4];
+[C1x, C1y] = fourth_order(fx1, fy1, t);
+
+%H through A to I 
+
+
+
+
+%Use 3rd order Bezier Curve from points D to J, from E to K.
+
+%D to J (3,1) (2,3) (1,3.5) (0,4)
+tx1 = [3; 2; 1; 0];
+ty1 = [1; 2; 3.5; 4];
+
+[D1x, D1y] = third_order(tx1, ty1, t);
+
+%E to K (9,1) (10, 2) (11, 3.5) (12, 4)
+
+tx2 = [9; 10; 11; 12];
+ty2 = [1; 2; 3.5; 4];
+
+[D1x, D1y] = third_order(tx2, ty2, t);
+
+
+
+%Use 2nd order Bezier Curve from points F to J, from D to H, from F to B, from G to C, from G to K, from E to I.
+
+%F to J (0,4) (0,1) (2,3)
+sx1 = [0; 0; 4];
+sy1 = [4; 1; 0];
+
+[P1x, P1y] = second_order(sx1,sy1,t);
+
+%D to H (3,1) (2,3) (1,5)
+sx2 = [3; 2; 1];
+sy2 = [1; 3; 5];
+
+[P1x, P1y] = second_order(sx2,sy2,t);
+
+%F to B (4,0) (3,4) (6,3)
+sx3 = [3; 4; 6];
+sy3 = [4; 0; 3];
+
+[P1x, P1y] = second_order(sx3,sy3,t);
+
+%G to C (8,0) (6,3) (9,4)
+sx4 = [6; 8; 9];
+sy4 = [3; 0; 4];
+
+[P1x, P1y] = second_order(sx4,sy4,t);
+
+%E to I (9,1) (10, 3) (11, 5)
+sx5 = [9; 10 ; 11];
+sy5 = [1; 3; 5];
+
+[P1x, P1y] = second_order(sx5,sy5,t);
+%Ensure the same tangent in points B, C, I, H.
